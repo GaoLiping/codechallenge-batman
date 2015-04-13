@@ -19,3 +19,22 @@ Furthermore, the service must meet the following requirements:
 * The project must be built as a docker image using a Dockerfile starting with `FROM ubuntu:trusty`, and run as a docker container.
 * You have to write every line of code yourself, but you can ask anyone for help. No-one is required to help though.
 
+# How to compile / run
+
+To test locally.
+```sh
+mvn jetty:run
+```
+
+To package a war file for jetty.
+```sh
+mvn package war:war
+```
+
+To build a docker container and run it.
+```sh
+docker build -t "rws" .
+docker run -d -p 8080:8080 rws
+```
+
+
