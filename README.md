@@ -5,7 +5,7 @@ curl -X POST http://localhost:8080/messages/names/$name
 ```
 produces a response with header Content-Type: application/json and JSON payload:
 ```json
-{"content": { "content": "Hello $name"}}
+{"message": { "content": "Hello $name"}}
 ```
 Furthermore, the service must meet the following requirements:
 * Code must be stored on github and be in a fork of this repository
