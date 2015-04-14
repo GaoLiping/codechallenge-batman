@@ -26,14 +26,13 @@ To test locally.
 mvn jetty:run
 ```
 
-To package a war file for jetty.
+To package a war file for jetty, and embed it into a docker container named "rws".
 ```sh
-mvn package war:war
+mvn package
 ```
 
-To build a docker container and run it.
+To run the docker container.
 ```sh
-docker build -t "rws" .
 docker run -d -p 8080:8080 rws
 ```
 

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
-import java.util.Map;
 
 /**
  * Message REST resource.
@@ -39,7 +38,7 @@ public class MessageResource extends Application {
     @POST
     @Path("/names/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Message> sayHello(@PathParam("name") String name) {
+    public Message sayHello(@PathParam("name") String name) {
         return messageService.getMessage(name);
     }
 

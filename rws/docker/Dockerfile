@@ -21,7 +21,7 @@ RUN useradd jetty && \
 WORKDIR ${JETTY_INSTALL_DIR}
 
 # Add our compiled WAR to the container as the root context
-ADD rws/target/rws-0.1.war webapps/root.war
+ADD rws-0.1.war webapps/root.war
 
 EXPOSE 8080
 

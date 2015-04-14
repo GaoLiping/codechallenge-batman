@@ -1,21 +1,21 @@
 package app;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * DTO Class for messages
  */
 public class Message {
 
-    private String content;
+    private Map<String, String> message;
 
     public Message(String content) {
-        setContent(content);
+        message = new HashMap<>();
+        message.put("content", content);
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+    public Map<String, String> getMessage() {
+        return message;
     }
 }
