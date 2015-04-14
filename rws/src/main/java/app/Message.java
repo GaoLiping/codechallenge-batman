@@ -4,18 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * DTO Class for messages
+ * DTO wrapper class for messages
  */
 public class Message {
 
-    private Map<String, String> message;
+    private MessageContent message;
 
     public Message(String content) {
-        message = new HashMap<>();
-        message.put("content", content);
+        message = new MessageContent(content);
     }
 
-    public Map<String, String> getMessage() {
+    public MessageContent getMessage() {
         return message;
     }
 }

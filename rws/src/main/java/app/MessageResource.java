@@ -27,8 +27,8 @@ public class MessageResource extends Application {
     @GET
     @Path("/static")
     @Produces(MediaType.APPLICATION_JSON)
-    public String sayStaticHello() {
-        return "hello. this is static.";
+    public Message sayStaticHello() {
+        return new Message("static string");
     }
 
 
