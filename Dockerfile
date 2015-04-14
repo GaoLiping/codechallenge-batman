@@ -3,6 +3,7 @@ MAINTAINER Soren Vind <svi@tradeshift.com>
 
 RUN apt-get update && apt-get install -y wget openjdk-7-jre-headless
 
+# Install Jetty from downloaded source (Ubuntu package repo is halfway useless)
 ENV JETTY_INSTALL_DIR /opt/jetty
 ENV JETTY_VERSION 9.2.10
 ENV RELEASE_DATE v20150310
@@ -19,10 +20,11 @@ RUN useradd jetty && \
 
 WORKDIR ${JETTY_INSTALL_DIR}
 
+# Add our compiled WAR to the container as the root context
 ADD rws/target/rws-0.1.war webapps/root.war
 
 EXPOSE 8080
 
-# run docker
+# Run Jetty server
 CMD ["java", "-jar", "start.jar", "jetty.home=/opt/jetty"]
 

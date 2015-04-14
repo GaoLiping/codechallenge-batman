@@ -1,7 +1,7 @@
 package app;
 
 /**
- * Created by svi on 10/04/15.
+ * DTO Class for messages
  */
 public class Message {
 
