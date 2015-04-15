@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,15 +64,9 @@ public class MessageResource extends Application {
     @GET
     @Path("/recent")
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<String, Object> getRecentMessages() {
+    public Messages getRecentMessages() {
         List<Message> messages = messageService.getRecentMessages();
-        Map<String, Object> output = new HashMap<>();
-        output.put("messageCount", messages.size());
-        if (messages.size() > 0) {
-            output.put("lastMessage", messages.get(0).getStamp());
-            output.put("messages", messages);
-        }
-        return output;
+        return new Messages(messages);
     }
 
 }
