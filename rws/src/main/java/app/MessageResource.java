@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,12 +47,12 @@ public class MessageResource extends Application {
     }
 
     /**
-     * Get a static test string, for test purposes.
+     * Get a count of the number of messages in the system
      */
     @GET
     @Path("/count")
     @Produces(MediaType.APPLICATION_JSON)
-    public Message getCount() {
+    public Integer getCount() {
         return messageService.countMessages();
     }
 
@@ -61,7 +63,14 @@ public class MessageResource extends Application {
     @Path("/recent")
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, Object> getRecentMessages() {
-        return messageService.getRecentMessages();
+        List<Message> messages = messageService.getRecentMessages();
+        Map<String, Object> output = new HashMap<>();
+        output.put("messageCount", messages.size());
+        if (messages.size() > 0) {
+            output.put("lastMessage", messages.get(0).getStamp());
+            output.put("messages", messages);
+        }
+        return output;
     }
 
 }

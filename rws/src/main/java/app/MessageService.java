@@ -31,24 +31,15 @@ public class MessageService {
     /**
      * Count the messages stored
      */
-    public Message countMessages() {
-        int count = messagesDAO.countRows();
-        Message msg = new Message(String.format("%d rows found", count));
-        return msg;
+    public Integer countMessages() {
+        return messagesDAO.countRows();
     }
 
     /**
      * Get the recently created messages as a map.
      */
-    public Map<String, Object> getRecentMessages() {
-        List<Message> messages = messagesDAO.getRecent(10);
-        Map<String, Object> output = new HashMap<>();
-        output.put("messageCount", messages.size());
-        if (messages.size() > 0) {
-            output.put("lastMessage", messages.get(0).getStamp());
-            output.put("messages", messages);
-        }
-        return output;
+    public List<Message> getRecentMessages() {
+        return messagesDAO.getRecent(10);
     }
 
 }

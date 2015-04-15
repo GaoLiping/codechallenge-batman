@@ -48,7 +48,7 @@ The following requirements also have to be met:
 
 # How to compile / run
 
-To test locally.
+To run locally.
 ```sh
 mvn jetty:run
 ```
@@ -75,4 +75,11 @@ Link PostgreSQL and webapp. Webapp can connect with user/port as specified above
 ```sh
 docker run -p 8080:8080 --link dev-postgres:postgres -d rws
 ```
+
+Run jUnit tests, create jacoco report in target/site/jacoco/index.html
+```sh
+mvn test
+mvn jacoco:report
+```
+
 
