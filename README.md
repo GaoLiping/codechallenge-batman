@@ -46,6 +46,17 @@ The following requirements also have to be met:
 * There is a `MessagesDAO` class that handles the interaction with the database.
 * The project build runs JUnit tests using Mockito for mock objects producing over 60% line coverage measured using Jacoco.
 
+##Final iteration
+Based on the project created in the first two iterations, create a frontend for the messages resource that serves up a GUI on `http://docker_host_ip:8080/`. 
+The GUI has to be fulfil the following requirements:
+* Must use angularjs
+* Static HTML and JS files have to be served up from the jetty instance
+* Must be able to create new messages using the POST resource
+* Has to have a graphical interface that was designed by the participant
+* Is able to list the previous messages using the GET resource.
+* Uses AJAX calls for all the REST operations.
+For the pull request, a demo video must be produced that shows the functionality of the UI.
+
 # How to compile / run
 
 To run locally.
