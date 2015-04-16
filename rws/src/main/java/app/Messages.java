@@ -16,7 +16,7 @@ public class Messages {
     public Messages(List<Message> messages) {
         this.messages = messages;
         this.messageCount = messages.size();
-        if (messages.size() > 0) {
+        if (messages.size() > 0 && messages.get(0).getStamp() != null) {
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
             this.lastMessage = df.format(messages.get(0).getStamp());
         }

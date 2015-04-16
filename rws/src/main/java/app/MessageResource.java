@@ -33,7 +33,7 @@ public class MessageResource extends Application {
     @Path("/static")
     @Produces(MediaType.APPLICATION_JSON)
     public Message sayStaticHello() {
-        return new Message("static string");
+        return new Message("static");
     }
 
 

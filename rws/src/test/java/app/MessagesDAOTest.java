@@ -5,14 +5,9 @@ import org.junit.Test;
 import org.mockito.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Test MessagesDAO
@@ -20,16 +15,12 @@ import static org.junit.Assert.*;
 public class MessagesDAOTest {
 
     private static final String TEST_NAME="test";
-    private List<Message> messageStore;
 
     @Mock
     private DataSource dataSource;
 
     @Mock
     private JdbcTemplate jdbcTemplate;
-
-    @Mock
-    private SimpleJdbcInsert insertMessage;
 
     // Inject our mocks into the tested object
     @InjectMocks
@@ -38,30 +29,27 @@ public class MessagesDAOTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        messageStore = new ArrayList<>();
+        Mockito.when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(Class.class))).thenReturn(0);
     }
 
     @Test
-    public void testAll() throws Exception {
-        setMockAnswers();
-        assertEquals(0, messagesDAO.countRows());
-        assertEquals(0, messagesDAO.getRecent(10).size());
-
+    public void testAdd() throws Exception {
         Message msg = new Message(TEST_NAME);
         messagesDAO.add(msg);
-        messageStore.add(msg);
-        setMockAnswers();
-
-        assertEquals(1, messagesDAO.countRows());
-        assertEquals(1, messagesDAO.getRecent(10).size());
+        Mockito.verify(jdbcTemplate).update(Mockito.anyString(), Mockito.anyObject());
     }
 
-    /**
-     * Set the return answers to the content of the messageStore object
-     */
-    public void setMockAnswers() {
-        Mockito.when(jdbcTemplate.query(Mockito.anyString(), (RowMapper<Message>) Mockito.anyObject())).thenReturn(messageStore);
-        Mockito.when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(Class.class))).thenReturn(messageStore.size());
-        Mockito.when(insertMessage.execute(Mockito.any(SqlParameterSource.class))).thenReturn(1);
+    @Test
+    public void testGetRecent() throws Exception {
+        messagesDAO.getRecent(10);
+        Mockito.verify(jdbcTemplate).query(Mockito.anyString(), (String[])Mockito.anyObject(), (RowMapper<Message>) Mockito.anyObject());
     }
+
+    @Test
+    public void testCountRows() throws Exception {
+        messagesDAO.countRows();
+        Mockito.verify(jdbcTemplate).queryForObject(Mockito.anyString(), Mockito.any(Class.class));
+    }
+
+
 }
