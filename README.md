@@ -51,10 +51,11 @@ Based on the project created in the first two iterations, create a frontend for 
 The GUI has to be fulfil the following requirements:
 * Must use angularjs
 * Static HTML and JS files have to be served up from the jetty instance
-* Must be able to create new messages using the POST resource
-* Has to have a graphical interface that was designed by the participant
-* Is able to list the previous messages using the GET resource.
-* Uses AJAX calls for all the REST operations.
+* Must be able to create new messages using the `POST` resource
+* Has to have a graphical interface that was designed by you
+* Is able to list the previous messages using the `GET` resource.
+* Uses `AJAX` calls for all the `REST` operations.
+
 For the pull request, a demo video must be produced that shows the functionality of the UI.
 
 # How to compile / run
