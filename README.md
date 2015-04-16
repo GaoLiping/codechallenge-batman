@@ -48,7 +48,7 @@ The following requirements also have to be met:
 
 # How to compile / run
 
-To test locally.
+To run locally.
 ```sh
 mvn jetty:run
 ```
@@ -61,6 +61,25 @@ mvn package
 To run the docker container.
 ```sh
 docker run -d -p 8080:8080 rws
+```
+
+# Testing notes
+
+Run PostgreSQL in a docker container (https://registry.hub.docker.com/_/postgres/).
+This exposes port 5432, user postgres:password and has database postgres already.
+```sh
+docker run --name dev-postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres
+```
+
+Link PostgreSQL and webapp. Webapp can connect with user/port as specified above.
+```sh
+docker run -p 8080:8080 --link dev-postgres:postgres -d rws
+```
+
+Run jUnit tests, create jacoco report in target/site/jacoco/index.html
+```sh
+mvn test
+mvn jacoco:report
 ```
 
 

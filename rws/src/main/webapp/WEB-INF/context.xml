@@ -7,6 +7,16 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-       <context:component-scan base-package="app"/>
+   <context:component-scan base-package="app"/>
 
+    <bean id="dataSource" class="org.postgresql.ds.PGSimpleDataSource">
+        <property name="serverName" value="${POSTGRES_PORT_5432_TCP_ADDR}"/>
+        <property name="portNumber" value="${POSTGRES_PORT_5432_TCP_PORT}"/>
+        <property name="databaseName" value="postgres"/>
+        <property name="user" value="postgres"/>
+        <property name="password" value="${POSTGRES_ENV_POSTGRES_PASSWORD}"/>
+    </bean>
+
+    <!-- Read environment variables-->
+    <context:property-placeholder />
 </beans>
