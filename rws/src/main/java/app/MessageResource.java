@@ -6,17 +6,10 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Message REST resource.
- * Answers on paths:
- *  GET /messages/static replies with a static JSON-string
- *  POST /messages/names/$name replies with a Message object and a welcome message for $name
  */
 @Component
 @Path("/messages")

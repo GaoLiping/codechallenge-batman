@@ -1,24 +1,25 @@
 package app;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 import java.util.List;
 
 /**
  * DTO Class for a list of messages
  */
+
 public class Messages {
 
     private Integer messageCount;
-    private String lastMessage;
+    private Date lastMessage;
     private List<Message> messages;
 
     public Messages(List<Message> messages) {
         this.messages = messages;
         this.messageCount = messages.size();
         if (messages.size() > 0 && messages.get(0).getStamp() != null) {
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            this.lastMessage = df.format(messages.get(0).getStamp());
+            this.lastMessage = messages.get(0).getStamp();
         }
     }
 
@@ -26,7 +27,8 @@ public class Messages {
         return messageCount;
     }
 
-    public String getLastMessage() {
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone="UTC")
+    public Date getLastMessage() {
         return lastMessage;
     }
 
