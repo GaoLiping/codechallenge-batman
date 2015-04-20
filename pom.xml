@@ -1,17 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>cn.marcusli.demo</groupId>
-  <artifactId>helloMavenAndJetty</artifactId>
+  <groupId>com.tradeshift.codechallenge</groupId>
+  <artifactId>helloworld</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>helloMavenAndJetty Maven Webapp</name>
+  <name>helloworld Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
     <jettyVersion>9.3.0.M1</jettyVersion>
     <servletVersion>3.1.0</servletVersion>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -19,7 +18,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -30,7 +28,7 @@
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-mapper-asl</artifactId>
-      <version>1.9.4</version>
+      <version>1.8.1</version>
     </dependency>
 
     <!-- Jersey -->
@@ -56,6 +54,14 @@
       <artifactId>spring-web</artifactId>
       <version>3.0.5.RELEASE</version>
     </dependency>
+
+    <!-- Jersey + Json -->
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-json</artifactId>
+      <version>1.8</version>
+    </dependency>
+
 
     <!-- Jersey + Spring -->
     <dependency>
@@ -85,9 +91,10 @@
         </exclusion>
       </exclusions>
     </dependency>
+
   </dependencies>
   <build>
-    <finalName>helloMavenAndJetty</finalName>
+    <finalName>helloworld</finalName>
     <plugins>
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
@@ -95,6 +102,5 @@
         <version>${jettyVersion}</version>
       </plugin>
     </plugins>
-
   </build>
 </project>
