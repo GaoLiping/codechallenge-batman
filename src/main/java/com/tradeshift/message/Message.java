@@ -21,9 +21,10 @@ public class Message {
     public String getContent() {
         return content;
     }
-
+/*
     @PostConstruct
     public void init(){
         System.out.println("message 在初始化！");
     }
+    */
 }
