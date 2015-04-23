@@ -1,12 +1,16 @@
 package com.tradeshift.service;
 
 import com.sun.jersey.spi.resource.Singleton;
+import com.tradeshift.dao.ResponseMessageDao;
 import com.tradeshift.message.ResponseMessage;
-import org.codehaus.jackson.map.ObjectMapper;
+import com.tradeshift.message.ResponseMessages;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.tradeshift.message.Message;
 
-import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by liping on 15/04/15.
@@ -16,27 +20,17 @@ import java.io.IOException;
 @Service
 public class MessageService {
 
-    public static final ObjectMapper mapper = new ObjectMapper();
+    @Autowired
+    private ResponseMessageDao msgDao;
 
-    private ResponseMessage createResponse(String userName){
+    public ResponseMessage getResponse(String userName){
         ResponseMessage responseMsg = new ResponseMessage();
-        Message msg = new Message(userName);
-        responseMsg.setMessage(msg);
+        responseMsg.setMessage(new Message(userName));
+        msgDao.insert(responseMsg);
         return responseMsg;
     }
 
-    private String toJson(ResponseMessage resMsg){
-        String result = "";
-        try{
-            result = mapper.writeValueAsString(resMsg);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    public String getRespose(String userName){
-        ResponseMessage resMsg = createResponse(userName);
-        return toJson(resMsg);
+    public List<ResponseMessage> getRecentResponses(){
+         return msgDao.findRecentMessage();
     }
 }
