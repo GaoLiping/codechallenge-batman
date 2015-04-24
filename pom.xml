@@ -11,6 +11,8 @@
     <jettyVersion>9.3.0.M1</jettyVersion>
     <servletVersion>3.1.0</servletVersion>
   </properties>
+
+
   <dependencies>
 
     <!-- Junit -->
@@ -59,28 +61,35 @@
     </dependency>
 
     <!-- Spring 3 dependencies -->
+
+	<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>4.0.3.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>3.2.4.RELEASE</version>
+      <version>4.1.1.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>3.2.4.RELEASE</version>
+      <version>4.1.1.RELEASE</version>
     </dependency>
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
-      <version>3.2.4.RELEASE</version>
+      <version>4.1.1.RELEASE</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>3.2.4.RELEASE</version>
+      <version>4.1.1.RELEASE</version>
     </dependency>
 
     <!-- Jersey + Json -->
@@ -121,13 +130,27 @@
           <groupId>org.springframework</groupId>
           <artifactId>spring-context</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-aop</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-asm</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
 
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
-      <version>1.7.1.RELEASE</version>
+      <version>1.8.0.RELEASE</version>
+    <exclusions>
+      <exclusion>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-asm</artifactId>
+      </exclusion>
+  </exclusions>
     </dependency>
 
     <!-- Postgresql -->
@@ -136,7 +159,7 @@
       <artifactId>postgresql</artifactId>
       <version>9.4-1200-jdbc4</version>
     </dependency>
-    
+
   </dependencies>
   <build>
     <finalName>helloworld</finalName>
@@ -145,6 +168,43 @@
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>${jettyVersion}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.7.4.201502262128</version>
+        <configuration>
+          <rules >
+            <rule implementation="org.jacoco.maven.RuleConfiguration">
+              <element>BUNDLE</element>
+              <limits>
+                <limit implementation="org.jacoco.report.check.Limit">
+                  <counter>LINE</counter>
+                  <value>COVEREDRATIO</value>
+                  <minimum>0.60</minimum>
+                </limit>
+              </limits>
+              <excludes>
+                <exclude>*Test</exclude>
+              </excludes>
+            </rule>
+          </rules>
+        </configuration>
+        <executions>
+        <execution>
+          <id>default-prepare-agent</id>
+          <goals>
+            <goal>prepare-agent</goal>
+          </goals>
+        </execution>
+          <execution>
+            <id>default-check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

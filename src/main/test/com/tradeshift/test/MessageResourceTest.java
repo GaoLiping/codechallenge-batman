@@ -58,7 +58,7 @@ public class MessageResourceTest {
     }
 
     @Test
-    public void testReplyRecencyExist() throws Exception {;
+    public void testReplyRecencyExist() throws Exception {
         when(msgService.getRecentResponses()).thenReturn(responseMsgList);
         msgResource.replyRecency();
         verify(msgService).getRecentResponses();

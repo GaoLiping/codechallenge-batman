@@ -59,7 +59,11 @@ public class ResponseMessageDaoTest {
         when(jdbcTemplate.queryForObject(Mockito.anyString(), Mockito.any(Class.class))).thenReturn(responseMsgList.size());
     }
 
-
+    @Test
+    public void TestInitTable() throws Exception{
+        responseMsgDao.initTable();
+        verify(jdbcTemplate).update(Mockito.anyString());
+    }
     @Test
     public void testFindRecentMessage() throws Exception{
         List<ResponseMessage> returnMsgs = responseMsgDao.findRecentMessage();

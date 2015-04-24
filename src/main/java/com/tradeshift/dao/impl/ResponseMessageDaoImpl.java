@@ -25,6 +25,13 @@ public class ResponseMessageDaoImpl implements ResponseMessageDao {
     @Autowired
     public void setDataSource(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);
+        initTable();
+    }
+    public void initTable(){
+        String sqlCreate = "CREATE TABLE IF NOT EXISTS responsemessage (\n"
+                + "content varchar(80) NOT NULL,\n " +
+                "timestamp timestamptz DEFAULT current_timestamp)";
+        jdbcTemplate.update(sqlCreate);
     }
 
     public void insert(ResponseMessage rmsg){

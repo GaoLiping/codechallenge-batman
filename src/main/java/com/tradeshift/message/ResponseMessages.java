@@ -25,12 +25,7 @@ public class ResponseMessages {
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd,HH:00", timezone="CET")
     private Date lastMessage;
 
-
     private List<ResponseMessage> messages;
-
-    public ResponseMessages(){
-
-    }
 
     public ResponseMessages(int messageCount, Date lastMessage,
                             List<ResponseMessage> responseMsgs){
@@ -43,24 +38,11 @@ public class ResponseMessages {
         return messageCount;
     }
 
-    public void setMessageCount(int messageCount) {
-        this.messageCount = messageCount;
-    }
-
     public Date getLastMessage() {
         return lastMessage;
-    }
-
-    public void setLastMessage(Date lastMessage) {
-        this.lastMessage = lastMessage;
     }
 
     public List<ResponseMessage> getMessages() {
         return messages;
     }
-    public void setMessages(List<ResponseMessage> responseMsgs) {
-        this.messages = responseMsgs;
-    }
-
-
 }
