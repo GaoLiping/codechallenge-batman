@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <style>
+        table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+    <title>Code Challenge</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.15/angular-resource.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+
+<div ng-controller="codeChallenge">
+    <h2>Your {{ recent.messageCount }} recent Messages:</h2>
+    <table>
+        <thead>
+        <tr><th colspan="4">Messages</th></tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="message in recent.messages">
+            <td>{{$index + 1}}</td>
+            <td>{{message.message.content}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <h4>Latest visit time {{ recent.lastMessage }}</h4>
+
+    <h2>Post A Message Here</h2>
+    <form class="simple-form">
+        Name: <input type="text" ng-model="userName" />
+        <button ng-click="postMessage(userName)">Post Message</button>
+    </form>
+</div>
+
+</body>
+</html>
