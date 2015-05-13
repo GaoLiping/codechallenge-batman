@@ -29,7 +29,7 @@ public class MessageService {
         msgDao.insert(responseMsg);
         return responseMsg;
     }
-
+    //todo
     public List<ResponseMessage> getRecentResponses(){
          return msgDao.findRecentMessage();
     }
